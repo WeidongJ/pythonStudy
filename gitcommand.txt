@@ -1,0 +1,16 @@
+提交新文件/修改文件：
+1.git add xxx
+2.git commit -m ""
+
+查看提交日志:git log
+回退上:git reset --hard HEAD^
+回退指定版本：git reset --hard xxxx
+撤销git add操作：git reset HEAD xxx
+对比最近提交文件：git diff HEAD -- xxx
+git bash 输入历史：git reflog
+
+撤销文件修改：git checkout -- xxx
+新增无效更新
+
+ssh-keygen -t rsa -C "1287424961@qq.commit"  //生成sshkey
+git remote add origin git@github.com:WeidongJ/pythonStudy //关联远程库
