@@ -103,3 +103,21 @@ if 'Apr 1' in birthdays:
 print(birthdays.get('111',0))
 birthdays.setdefault('weidong','jen 1')
 print(birthdays)
+
+# chp5
+def dispalyInventory(inventory):
+    print('inventory')
+    totalItems = 0
+    for k, v in inventory.items():
+        print('{value} {key}'.format(value=v,key=k))
+        totalItems += v
+    print('totalItems : %d' %(totalItems))
+
+def addInventory(inventory,addedItems):
+    for k,v in addedItems.items():
+        inventory.setdefault(k,0)
+        inventory[k] += v
+stuff = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
+newStuff = {'apple': 1, 'torch': 3, 'gold coin': 42}
+addInventory(stuff,newStuff)
+dispalyInventory(stuff)
