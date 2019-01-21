@@ -153,3 +153,7 @@ print(aSpam.strip()) # 去除首尾空格
 # pyperclip模块用户拷贝粘贴字符串
 pyperclip.copy(aSpam)
 print(pyperclip.paste())
+
+
+
+#chp7
