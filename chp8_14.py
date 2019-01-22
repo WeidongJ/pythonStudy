@@ -58,3 +58,40 @@ for folderName,subfolders,filenames in os.walk('D:\\'):
     for filename in filenames:
         print('FILE INSIDE ' + folderName + ': '+ filename)
     print('') # os.walk 返回三个值，1.当前文件夹目录名，2.当前文件夹的子文件夹列表 3.当前文件夹下文件列表
+
+
+# chp10
+import traceback
+import os
+import logging
+
+logging.basicConfig(level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
+
+def minus(num):
+    if num ==0:
+        raise ZeroDivisionError("num can't be 0")
+    else:
+        print(20/num)
+
+# 通常是调用该函数的代码知道如何处理异常，而不是该函数本身。所以你常常会看到raise语句在一
+# 个函数中，try和except语句在调用该函数的代码中
+os.chdir('D:\\workspace\\python\\python_quick_start')
+try:
+ minus(0)
+except ZeroDivisionError as e:
+    print('入参不能为0')
+
+# 收集异常日志
+try:
+    minus(0)
+except:
+    errorFile = open('errorFile.txt','w')
+    logging.debug('创建文件')
+    logging.disable(logging.CRITICAL)
+    errorFile.write(traceback.format_exc()) # 禁用日志
+    logging.debug('写入traceback信息')
+    errorFile.close()
+    print('已收集异常日志')
+
+# logging 模块 ：你可以随心所欲地在程序中想加多少就加多少，稍后只要加入一次logging.disable
+# logging level
