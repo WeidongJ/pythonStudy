@@ -154,6 +154,31 @@ print(aSpam.strip()) # 去除首尾空格
 pyperclip.copy(aSpam)
 print(pyperclip.paste())
 
+# chp6.7
+def printTable(tableData):
+    try:
+        colWidths = [0]*len(tableData)
+        index = 0
+        for i in tableData:
+            maxLen = 0
+            for x in i:
+                if len(x) >maxLen :
+                    maxLen = len(x)
+            colWidths[index] = maxLen
+            index += 1
+        for i in range(len(tableData[0])):
+            for x in range(len(tableData)):
+                print(tableData[x][i].rjust(colWidths[x]),end=' ')
+            print('')
+    except IndexError as e:
+        print('错误%s' %e)
+
+tableData = [['apples', 'oranges', 'cherries', 'banana'], 
+             ['Alice', 'Bob', 'Carol', 'David'], 
+             ['dogs', 'cats', 'moose', 'goose']]
+printTable(tableData)
+
+
 
 
 #chp7
