@@ -95,3 +95,57 @@ except:
 
 # logging 模块 ：你可以随心所欲地在程序中想加多少就加多少，稍后只要加入一次logging.disable
 # logging level
+
+# chp11
+import webbrowser
+import requests
+# webbrowser.open('https://www.baidu.com')
+res = requests.get('http://www.zhixue.com')
+print(res.status_code)
+#newRes = requests.get('http://www.zhixue.com/unkonwpage.html')
+#newRes.raise_for_status() # 当访问出错抛出异常
+
+aRes = requests.get('http://www.gutenberg.org/cache/epub/1112/pg1112.txt')
+try:
+    aRes.raise_for_status()
+    playFile = open('RomeoAndJuliet.txt', 'wb')
+    for chunk in aRes.iter_content(100000):
+        playFile.write(chunk) # 指定每次读取内容大小
+    playFile.close()
+except Exception as e:
+    print('error: %s' % (e))
+
+# chp12
+import openpyxl
+import os
+os.chdir('D:\\workspace\\python\\python_quick_start')
+wb = openpyxl.load_workbook('example.xlsx')
+print(type(wb)) # 获取workbook对象
+print(wb.get_sheet_names())
+print(wb.get_sheet_by_name('Sheet3'))
+print(type(wb.get_sheet_by_name('Sheet3')))
+sheet = wb.get_active_sheet() # 获取活动的sheet页
+print(sheet) 
+print(sheet['A1']) # 获取单元格对象Cell
+print(sheet['A1'].value)
+c = sheet['B2']
+print(c.value)
+print('c的坐标：第%s行，%s列' %(c.row,c.column)) # 打印坐标
+d = sheet.cell(row=1,column=2)
+print(d)
+print(d.value)
+for i in range(1,3): # range不会取末尾值，
+    print(i,sheet.cell(row=i,column =2).value)
+
+# 列字母和数字转化
+# from openpyxl.cell import get_column_letter,column_index_from_string #???
+
+# 获取活动页行和列
+# print(sheet.get_highest_row()) # 报错了？是因为活动页当前没有边界？
+# print(sheet.get_highest_column())
+
+# 获得行和列
+a = tuple(sheet['A1':'B2'])
+for rowOfCellObjects in a:
+    for cellObj in rowOfCellObjects:
+        print(cellObj.coordinate,cellObj.value)
