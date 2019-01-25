@@ -149,3 +149,42 @@ a = tuple(sheet['A1':'B2'])
 for rowOfCellObjects in a:
     for cellObj in rowOfCellObjects:
         print(cellObj.coordinate,cellObj.value)
+
+        # 创建并保存excel
+
+# 修改sheet页名称
+newSheet = wb.get_sheet_by_name('Food List')
+newSheet.title = "Sheet3"
+
+# 创建sheet页
+wb.create_sheet() # 默认创建最后一个
+print(wb.get_sheet_names())
+wb.create_sheet(index=0,title='First Sheet') # 指定位置创建sheet页
+print(wb.get_sheet_names())
+wb.remove_sheet(wb.get_sheet_by_name('First Sheet'))
+print(wb.get_sheet_names())
+# wb.save('example.xlsx')
+
+# 设置单元格字体风格
+# from openpyxl.styles import Font 
+# itelic24Font = Font(size=24, italic=True)
+# sheet['A'].style/styleObi
+
+# 设置单元格高度和宽度
+sheet.row_dimensions[1].height = 70
+sheet.column_dimensions['B'].width = 20
+
+# 拆分单元格、合并单元格
+sheet.merge_cells('A3:B6') # 合并
+sheet.unmerge_cells('A3:B6') # 拆分
+
+# 冻结单元格
+sheet.freeze_panes = 'A1'
+sheet.freeze_panes = 'A2' # 行1 
+sheet.freeze_panes = 'B1' # 列A 
+sheet.freeze_panes = 'C1' # 列A和列B 
+sheet.freeze_panes = 'C2' # 行1和列A和列B 
+sheet.freeze_panes = 'A1' # 或 
+sheet.freeze_panes = None 
+
+wb.save('example.xlsx')
