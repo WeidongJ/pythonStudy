@@ -188,3 +188,38 @@ sheet.freeze_panes = 'A1' # 或
 sheet.freeze_panes = None 
 
 wb.save('example.xlsx')
+
+# chp14
+
+import csv
+import os
+
+os.chdir('D:\\workspace\\python\\python_quick_start')
+
+# 读取csv文件
+exampleFile = open('example.csv')
+exampleReader = csv.reader(exampleFile)
+for row in exampleReader:
+        print('Row #' + str(exampleReader.line_num)+'' + str(row))
+exampleData = list(exampleReader)
+print(exampleData) #Reader对象只能循环遍历一次。要再次读取CSV文件，必须调用csv.reader，创建一个对象 此处value为null
+
+# 写入csv
+outputFile = open('ouput.csv','w',newline='')
+outputWrite = csv.writer(outputFile,delimiter = '\t',lineterminator = '\n\n') # delimiter 间隔符，lineterminator 指定行间距
+outputWrite.writerow(['weidongji','93','reading'])
+outputWrite.writerow(['weidongji','keepFit','reading'])
+outputFile.close()
+
+# json
+
+# json 转化成 字典？
+import json
+
+jsonData = '{"name":"weidong","hobby":"running"}'
+pythonValue = json.loads(jsonData)
+print(pythonValue)
+
+# pythonValue转化成 json
+jsonNewData = json.dumps(pythonValue)
+print(jsonNewData) # 双引号
