@@ -182,3 +182,21 @@ printTable(tableData)
 
 
 #chp7
+import re
+
+def weakPasswordCheck(password):
+    regexList = [r'[A-Z]+',r'[a-z]+',r'\d+']
+    try:
+        if len(password)>=8:
+            for regex in regexList:
+                passwordRegex = re.compile(regex)
+                if not passwordRegex.search(password):
+                    print('Too weak!')
+                    break
+            print('strong password')
+        else:
+            print('Your Password is too short')
+    except KeyError as e:
+        print('not a str%s' %e)
+
+weakPasswordCheck('12345678Zm')

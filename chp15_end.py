@@ -1,80 +1,53 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 
-# chp15
+# chp16
+import smtplib
 
-import time
-import datetime
+smtpObj = smtplib.SMTP('smtp.qq.com',587)
+# 建立smtp连接 smtpObj.ehlo()
 
-print(time.time())
+if smtpObj.ehlo()[0]==250:
+    print('connect successful')
+    # 587 端口加密
+    smtpObj.starttls()
+    # 登录
+    loginStatus = smtpObj.login('1287424961@qq.com','zmkm1234')
+    if loginStatus[0]==235:
+        print('login successful')
+        # 发送邮件
+        recevier = smtpObj.sendmail('1287424961@qq.com','sounddone@hotmail.com','Subject: Test Mail!\nDear Weidong,It is a test mail!')
+        print(recevier)
+        # 断开连接
+        smtpObj.quit()
 
-def calcProd():
-    product = 1
-    for i in range(1,100000):
-        product *= i
-    return product
 
-startTime = time.time()
-calcProd()
-endTime = time.time()
-print('total cost %s' %(round(endTime-startTime,2)))
+# imapclient 接受邮件
 
-# datetime 格式化时间
-now = datetime.datetime.now()
-print(now)
-print(now.year) # 获取年月日方法
+import imapclient
+imapObj = imapclient.IMAPClient('imap.qq.com',ssl=True)
+imapObj.login('1287424961@qq.com','zmkm1234')
+print(imapObj.list_folders())
+# 选择文件夹
+imapObj.select_folder('INBOX',readonly=True)
+# 搜索邮件唯一id
+UIDs = imapObj.search(['SINCE 17-Feb-2019'])
+print(UIDs)
+# 获取邮件对象内容
+rawMessages = imapObj.fetch([838],[b'BODY[]','FLAGS'])
+# 解析模块pyzmail
+import pyzmail
+message = pyzmail.PyzMessage.factory(rawMessages[838][b'BODY[]'])
+print(message.get_subject()) # 获取主题
+print(message.get_address('from')) # 获取发件人
+print(message.get_address('to')) # 获取收件人
 
-date = datetime.datetime.fromtimestamp(100000)
+# imapObj.delete_messages([838]) 删除电子邮件
 
-# date比较
-date1 = datetime.datetime(2019,1,1,0,0,0)
-date2 = datetime.datetime(2019,1,1,0,0,1)
-print(date1>date2)
-
-# 存储时间段 timedalta :可接受的关键字参数，weeks、days、hours、minutes、seconds、milliseconds和microseconds，由于month和year都是会变的
-span = datetime.timedelta(days=1,hours=2,seconds=15)
-print(span)
-print(str(span))
-print(span.total_seconds())
-print(now+span) # 时间加时间段
-print(now-span)
-
-# strftime 将datetime转化成字符串
-'''
-%Y 带世纪的年份，例如'2014' 
-%y 不带世纪的年份，'00'至'99'（1970至2069） 
-%m 数字表示的月份, '01'至'12' 
-%B 完整的月份，例如'November' 
-%b 简写的月份，例如'Nov' 
-%d 一月中的第几天，'01'至'31' 
-%j 一年中的第几天，'001'至'366' 
-%w 一周中的第几天，'0'（周日）至'6'（周六） 
-%A 完整的周几，例如'Monday' 
-%a 简写的周几，例如'Mon' 
-%H 小时（24小时时钟），'00'至'23' 
-%I 小时（12小时时钟），'01'至'12' 
-%M 分，'00'至'59' 
-%S 秒，'00'至'59' 
-%p 'AM'或'PM' 
-%% 就是'%'字符 '''
-formatNow =  now.strftime('%Y/%m/%d %H:%M:%S')
-print(formatNow)
-
-# strptime 将成字符串转化datetime
-
-print(datetime.datetime.strptime('2019 01 31','%Y %m %d'))
-
-# 多线程
-import threading
-print('start program')
-
-def wakeUp():
-    time.sleep(3)
-    print('Wake Up')
-
-wakingThread =  threading.Thread(target=wakeUp) 
-printThread = threading.Thread(target=print,args=['你好','我是','weidong'],kwargs={'sep':' & '})
-wakingThread.start()
-printThread.start()
-
-print('end of program')
+# 原始邮件获取正文：邮件格式可能是text/html 或者2者的混合
+# 纯文本电子邮件：PyzMessage.html_part = None,纯html邮件PyzMessage.text_part = None
+print(message.text_part == None)
+# decode原始bytes数据
+message.html_part.get_payload().decode(message.html_part.charset)
+# 断开连接
+imapObj.logout()
