@@ -19,6 +19,6 @@ while True:
     data = tcpCliSock.recv(BUFSIZ)
     if not data:
         break
-    print(data.decode('utf-8'))
+    print(str(data, encoding='utf-8'))
 
 tcpCliSock.close()

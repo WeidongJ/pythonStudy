@@ -12,7 +12,7 @@ class TSClntProtocol(protocol.Protocol):
         data = input('> ')
         if data:
             print('...sending %s...' % data)
-            self.transport.write()
+            self.transport.write(data.encode())
         else:
             self.transport.loseConnection()
 
@@ -20,7 +20,7 @@ class TSClntProtocol(protocol.Protocol):
         self.sendData()
 
     def dataReceived(self, data):
-        print(data)
+        print(data.decode('utf-8'))
         self.sendData()
 
 class TSClntFactory(protocol.ClientFactory):
