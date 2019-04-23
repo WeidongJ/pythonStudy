@@ -12,7 +12,7 @@ class TSClntProtocol(protocol.Protocol):
         data = input('> ')
         if data:
             print('...sending %s...' % data)
-            self.transport.write()
+            self.transport.write(data.encode())
         else:
             self.transport.loseConnection()
 

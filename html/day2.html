@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>html basic learning day 2 2019/04/21</h1>
+    <h2 id="anchor_a">Hyper links</h2>
+    <p>URL meanings Uniform Resource Locator</p>
+    <p>here is a example of local url <a href="day1.html">day1 notes</a></p><!-- 指向上级目录：href="../static/index.html"-->
+    <h3>href 跳转id 使用#+id</h3>
+    <p><a href="day1.html#anchor_b">point to Hyper links</a></p><!-- #指定跳转的id部分-->
+    <!-- 相对url的好处：1写起来方便，2更加高效-->
+    <h3>href 用于发送邮件&lt;</h3>
+    <p><a href="mailto:1287424961@qq.com?cc=123@qq.com&amp;subject=邮件主题&amp;body=正文">给我发邮件</a></p><!-- mailto:mailbox 不指定邮箱时会打开邮箱，用于分享的时候常常这样做；
+    其中最常用的是主题(subject)、抄送(cc)和主体(body) -->
+    <p><a href="day1.html" download="day1.html">download day1 html</a></p><!-- 使用下载标识：download-->
+    <!--文字排版-->
+    <h2>文字排版</h2>
+    <h3>描述列表 :&lt;dl&gt; ;下方是dl描述的文本，其内嵌dd能够自动缩进</h3>
+    <dl>
+        <dt>中国哲学简史</dt>
+        <dd>这是一本面向外国读者的中国哲学入门书，但是对于国人来说同样是一本中国哲学入门必备书。</dd>
+        <dt>中国简史</dt>
+        <dd>吕思勉的书，可能是史书比较容易入门的书，推荐的人很多，已经购入实体书。</dd>
+    </dl>
+    <p></p>
+    <h2>引用：浏览器处理时自动加上引号</h2>
+    <blockquote cite="https://zh.wikipedia.org/zh-hans/%E8%9D%B6%E6%81%8B%E8%8A%B1"><!--浏览器会自动换行并缩进-->
+    <p>这是一个块级引用的例子：人间词话三的引用:<blockquote>泪眼问花花不去，乱红飞过秋千去。</blockquote></p>
+    </blockquote>
+    <p>这是一个行内引用<q cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q">intended
+        for short quotations that don't require paragraph breaks.</q></p><!--行内引用会加引号-->
+    <!--浏览器大多不关心cite属性：通常仍然使用a来代替-->
+    <p>浏览器大多不关心cite属性：通常仍然使用a来代替，如</p>
+    <p>这是一个行内引用<q cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q">intended
+        for short quotations that don't require paragraph breaks.</q>-- <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q">
+    <cite>MDN page</cite></a></p><!--行内引用会加引号-->
+    <h2>缩略语：abbr</h2>
+    <p>这是一个缩略语的例子：<abbr title="超文本标记语言（Hyper Text Makeup Language">HTML</abbr></p>
+    <h2>标记地址</h2>
+    <p>例子：</p>
+    <address>
+        <p>my address: 合肥蜀山</p>
+    </address>
+    <h2>上标和下标：用于日期，方程式和数学表达式</h2>
+    <p>下标：H<sub>2</sub>O</p>
+    <p>上标：X<sup>2</sup></p>
+    <h2>展示计算机code</h2>
+    <pre><code>const para = document.querySelector('p');
+    para.onclick = function() {
+        alert('噢，噢，噢，别点我了。');
+    }</code></pre>
+    <p>请不要使用 <code>&lt;font&gt;</code> 、 <code>&lt;center&gt;</code> 等表象元素。</p>
+    <p>在上述的 JavaScript 示例中，<var>para</var> 表示一个段落元素。</p>
+    <p>按 <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>A</kbd> 选择全部内容。</p>
+    <pre>$ <kbd>ping mozilla.org</kbd>
+    <samp>PING mozilla.org (63.245.215.20): 56 data bytes
+    64 bytes from 63.245.215.20: icmp_seq=0 ttl=40 time=158.233 ms</samp></pre>
+    <h2>表示日期：</h2>
+    <p>例子： time:</p><time datetime="2019-04-22">2019年4月22日</time>
+    <p></p>
+    <p></p>
+    <h2>文档基本结构：Section</h2>
+    <dl>
+        <dt>标题栏</dt>
+        <dd>页面标题内容，区段专用标签为：&lt;header&gt;,&lt;header&gt; 是简介形式的内容。如果它是 &lt;body&gt; 的子元素，那么就是网站的全局页
+        眉。如果它是 &lt;article&gt; 或&lt;section&gt; 的子元素，那么它是这些部分特有的页眉（此 &lt;header&gt; 非彼 标题）</dd>
+        <dt>导航栏</dt>
+        <dd>页面导航 区段专用标签：&lt;nav&gt;</dd>
+        <dt>主内容</dt>
+        <dd>页面主要内容,区段专用标签：&lt;main&gt;,&lt;section&gt;,&lt;article&gt;,&lt;div&gt;等</dd>
+        <dd>main:存放每个页面独有的内容。每个页面上只能用一次 &lt;main&gt;，且直位于 &lt;body&gt; 中。最好不要把它嵌套进其它元素。</dd>
+        <dd>article包围的内容即一篇文章，与页面其它部分无关（比如一篇博文）</dd>
+        <dd>section:&lt;section&gt; 与 &lt;article&gt; 类似，但 &lt;section&gt; 更适用于组织页面使其按功能（比如迷你地图、一组文章标题
+            和摘要）分块。一般的最佳用法是：以 标题 作为开头；也可以把一篇 &lt;article&gt; 分成若干部分并分别置于不同的 &lt;section&gt; 中
+            ，也可以把一个区段 &lt;section&gt; 分成若干部分并分别置于不同的 &lt;article&gt; 中，取决于上下文。</dd>
+        <dt>侧边栏</dt>
+        <dd>一些外围信息，链接引用，广告等信息 区块专用标签：&lt;aside&gt;</dd>
+        <dt>页脚</dt>
+        <dd>横跨页面底部主要是一些次要内容, 区块专用标签：&lt;footer&gt;</dd>
+        <dt>无语义元素：&lt;div&gt;,&lt;span&gt;</dt>
+        <dd>&lt;div&gt;是一个块级无语义元素，应仅用于找不到更好的块级元素时，或者不想增加特定的意义时。</dd>
+        <dd>&lt;span&gt;:是一个内联的（inline）无语义元素，最好只用于无法找到更好的语义元素来包含内容时，或者
+            不想增加特定的含义时,&lt;div&gt; 非常便利但容易被滥用。由于它们没有语义值，会使 HTML 代码变得混乱。要小
+            心使用，只有在没有更好的语义方案时才选择它，而且要尽可能少用， 否则文档的升级和维护工作会非常困难</dd>
+        <dt>
+            <dd>换行与水平线</dd>
+            <dd>&lt;br&gt;换行，例子：<p>一首<br>诗</p></dd>
+            <hr>
+            <dd>诗一首</dd>
+        </dt>
+    </dl>
+</body>
+</html>
