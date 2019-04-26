@@ -14,3 +14,4 @@ git bash 输入历史：git reflog
 
 ssh-keygen -t rsa -C "1287424961@qq.commit"  //生成sshkey
 git remote add origin git@github.com:WeidongJ/pythonStudy //关联远程库
+git 
