@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>图片</h1>
+    <main>
+        <p>&lt;img&gt;,&lt;video&gt;被称为替换元素：其内容和尺寸是由外部资源定义的，而不是元素本身。</p>
+        <dl>
+            <dt>alt 属性：图片无法展示的时候显示的文字，用意主要是如下几点，如下：</dt>
+            <dd><img src="11.jpg" alt="example to show alt attribution"></dd>
+            <ul>
+                <li>帮助视力障碍人士</li>
+                <li>节省用户流量</li>
+            </ul>
+            <dt>title 属性：悬浮展示的描述</dt>
+        </dl>
+        <figure>
+            <img src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg"
+            alt="" width="400" height="341">
+            <figcaption>曼彻斯特大学博物馆展出的一只霸王龙的化石</figcaption>
+        </figure>
+        <p><a href="">&lt;figure&gt;</a>和 &lt;figcaption&gt; 元素，它正是为此而被创造出来的：为图片提供一个语义容器，在标题和图片之间建立清晰的关联</p>
+        <p>&lt;video&gt;</p>
+
+        <video src="start/resources/rabbit320.webm" controls><p>webm 是html5支持的吗，不是html5可以用MP4：<a href="start/resources/rabbit320.mp4">MP4</a></p></video>
+        <p>浏览器兼容的选项：通常准备2个资源？MP4，webm。例如：&lt;video&gt;不指定src而是使用source<br>
+        <code>&lt;video controls&gt;<br>
+            &lt;source src="rabbit320.mp4" type="video/mp4"&gt;<br>
+            &lt;source src="rabbit320.webm" type="video/webm"&gt;<br>
+            &lt;p&gt;你的浏览器不支持 HTML5 视频。可点击&lt;a href="rabbit320.mp4"&gt;此链接&lt;/a&gt;观看&lt;/p&gt;<br>
+          &lt;/video&gt;</code>
+        </p>
+        <br>
+        <h2>video的其他属性：</h2>
+        <dl>
+            <dt>autoplay</dt>
+            <dd>自动播放，用户会反感</dd>
+            <dt>loop</dt>
+            <dd>循环播放</dd>
+            <dt>muted</dt>
+            <dd>静音</dd>
+            <dt>poster</dt>
+            <dd>视频封面</dd>
+            <dt>preload</dt>
+            <dd>用于缓冲较大的文件，值有3个：none 不缓冲，auto 页面加载后缓冲媒体文件，metadata 仅缓冲文件元数据</dd>
+            <dt>一个例子：</dt>
+            <dd><video width="400" height="400" controls loop poster="start/resources/poster.png" preload="metadata" >
+                <source src="start/resources/rabbit320.mp4" type="video/mp4">
+                <source src="start/resources/rabbit320.webm" type="video/webm">
+            </video></dd>
+        </dl>
+
+    </main>
+</body>
+</html>
