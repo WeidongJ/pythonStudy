@@ -9,7 +9,7 @@ BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
 tcpCliSock = socket(AF_INET, SOCK_STREAM)
-tcpCliSock.connect(ADDR)
+tcpCliSock.connect(ADDR) # 随机分配端口与21567 进行连接
 
 while True:
     data = input('> ')

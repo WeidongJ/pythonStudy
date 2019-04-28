@@ -15,6 +15,7 @@ udpSerSock.bind(ADDR)
 while True:
     print('waiting for message...')
     data, addr = udpSerSock.recvfrom(BUFSIZ)
+    print('accept from :', addr)
     udpSerSock.sendto(('[%s] %s' % (ctime(), data)).encode(), addr)
     print('received from and return to:', addr)
 

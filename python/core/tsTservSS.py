@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from socketserver import (TCPServer as TCP, StreamRequestHandler as SRH)
+from socketserver import TCPServer as TCP, StreamRequestHandler as SRH
 from time import ctime
 
 HOST = ''
