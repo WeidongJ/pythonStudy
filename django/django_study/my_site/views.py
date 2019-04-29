@@ -1,13 +1,38 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,get_object_or_404,reverse
+from django.http import HttpResponse,HttpResponseRedirect
 from .models import Question,User,Choice
-from django.template import loader
 
 # Create your views here.
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('my_site/index.html')
+    qList = Question.objects.order_by('-pub_date')[:5]
+    # template = loader.get_template('my_site/index.html') 导入模版
     context = {
-        'latest_question_list': latest_question_list,
+        'qList': qList,
     }
-    return HttpResponse(template.render(template))
+    return render(request, 'my_site/index.html', context) # render函数： 导入模版，关联上下文，返回生成对象,上下文必须是dict
+    # return HttpResponse(template.render(context, request)) 返回生成对象
+
+def detail(request,question_id):
+    '''try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404('question_id not exists')
+        '''
+    question = get_object_or_404(Question,pk=question_id) # 使用get_objects_or_404方法抛出异常，目的是为了保证耦合性
+
+    return render(request,'my_site/detail.html',{'question': question})
+
+def vote(request, question_id):
+    question = get_object_or_404(Question,pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    except (KeyError,Choice.DoesNotExist):
+        return render(request, 'my_site/detail.html',{'question':question,'error_message':'You do not select a choice.',})
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse('my_site:results',args=(question.id,)))
+
+def results(request,question_id):
+    response = 'You are looking question: %s'
+    return HttpResponse(response % question_id[0])

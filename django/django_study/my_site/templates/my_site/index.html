@@ -1,20 +1,10 @@
-{% if latest_question_list %}
+{% if qList %}
     <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% for question in qList %}
+        <!--<li><a href="/my_site/{{ question.id }}/">{{ question.question_text }}</a></li>-->
+        <li><a href="{% url 'my_site:detail' question.id %}">{{ question.question_text }}</a></li><!--namespace的使用-->
     {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
-{% endif %}<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% endif %}
