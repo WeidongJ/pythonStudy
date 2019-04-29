@@ -35,4 +35,4 @@ def vote(request, question_id):
 
 def results(request,question_id):
     response = 'You are looking question: %s'
-    return HttpResponse(response % question_id[0])
+    return HttpResponse(response % question_id)
