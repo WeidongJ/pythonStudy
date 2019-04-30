@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import Question,User,Choice
 from django.views import generic
+from django.utils import timezone
 
 # upgrade views
 
@@ -10,7 +11,8 @@ class IndexView(generic.ListView):
     context_object_name = 'qList'
 
     def get_queryset(self):
-        return Question.objects.order_by('-pub_date')
+        # return Question.objects.order_by('-pub_date') 
+        return Question.objects.filter(pub_date_lte=timezone.now()).order_by('-pub_date') # filter筛选器
 
 class DetailView(generic.DetailView):
     model = Question
