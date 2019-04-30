@@ -1,5 +1,7 @@
 # Django 学习笔记 
-2019/04/29
+learn from [django][]  开始于2019/04/29
+
+
 
 ## 主要问题
 * django转码问题
@@ -25,3 +27,6 @@
 1. 去除模版中的硬编码url，使用低耦合的url name及namespace
         
         <li><a href="{% url 'my_site:detail' question.id %}">{{ question.question_text }}</a></li>
+
+
+[django]: 'https://docs.djangoproject.com/zh-hans/2.2' "django2.2中文官方文档"
