@@ -38,7 +38,7 @@ class QuestionIndexViewTests(TestCase):
         self.assertQuerysetEqual(r.context['qList'],[])
 
     def test_past_question(self):
-        create_question(question_text='Past question',days=-30)
+        create_question(question_text='Past question.',days=-30)
         r = self.client.get(reverse('my_site:index'))
         self.assertQuerysetEqual(r.context['qList'],['<Question: Past question.>'])
 
@@ -49,13 +49,29 @@ class QuestionIndexViewTests(TestCase):
         self.assertQuerysetEqual(r.context['qList'],[])
 
     def test_future_and_past_question(self):
-        create_question(question_text='Past question',days=-30)
-        create_question(question_text='Future question',days=30)
+        create_question(question_text='Past question.',days=-30)
+        create_question(question_text='Future question.',days=30)
         r = self.client.get(reverse('my_site:index'))
         self.assertQuerysetEqual(r.context['qList'],['<Question: Past question.>'])
 
     def test_two_past_question(self):
-        create_question(question_text='Past question 1',days=-30)
-        create_question(question_text='Past question 2',days=-5)
+        create_question(question_text='Past question 1.',days=-30)
+        create_question(question_text='Past question 2.',days=-5)
         r = self.client.get(reverse('my_site:index'))
         self.assertQuerysetEqual(r.context['qList'],['<Question: Past question 2.>', '<Question: Past question 1.>'])
+
+class QuestionDetailViewTests(TestCase):
+
+    def test_future_question(self):
+        future_question = create_question(question_text='Future question.',days=30)
+        url = reverse('my_site:detail',args=(future_question.id,))
+        r = self.client.get(url)
+        self.assertEqual(r.status_code,404)
+
+    def test_old_question(self):
+        old_question = create_question(question_text='Old question.',days=-3)
+        url = reverse('my_site:detail',args=(old_question.id,))
+        r = self.client.get(url)
+        self.assertContains(r,old_question.question_text)
+
+

@@ -1,3 +1,5 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'my_site/style.css' %}">
 {% if qList %}
     <ul>
     {% for question in qList %}
