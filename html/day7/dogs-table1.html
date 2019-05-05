@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dogs table</title>
+    <link href="minimal-table.css" rel="stylesheet" type="text/css">
+    <style>
+      tbody{
+        font-size: 90%;
+        font-style: italic;
+      }
+      tfoot{
+        font-weight:bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dogs Table</h1>
+
+    <table>
+      <colgroup>
+        <col style="background-color: yellow" span="2"> <!-- span 制定style生效的列-->
+      </colgroup>
+      <tr>
+        <td>&nbsp;</td>
+        <th scope="col">Knocky</th>
+        <th scope="col">Flor</th>
+        <th scope="col">Ella</th>
+        <th scope="col">Juan</th>
+      </tr>
+      <tr>
+        <th scope="row">Breed</th>
+        <td>Jack Russell</td>
+        <td>Poodle</td>
+        <td>Streetdog</td>
+        <td>Cocker Spaniel</td>
+      </tr>
+      <tr>
+        <th scope="row">Age</th>
+        <td>16</td>
+        <td>9</td>
+        <td>10</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <th scope="row">Owner</th>
+        <td>Mother-in-law</td>
+        <td>Me</td>
+        <td>Me</td>
+        <td>Sister-in-law</td>
+      </tr>
+      <tr>
+        <th scope="row">Eating Habits</th>
+        <td>Eats everyone's leftovers</td>
+        <td>Nibbles at food</td>
+        <td>Hearty eater</td>
+        <td>Will eat till he explodes</td>
+      </tr>
+    </table>
+
+    <p>custom table</p>
+    <table>
+      <tr>
+        <th colspan="2">sports</th>
+      </tr>
+      <tr>
+        <th colspan="2">sleep</th>
+      </tr>
+      <tr>
+        <th rowspan="2">diet</th>
+        <td>fit</td>
+      </tr>
+      <tr>
+        <th>learning</th>
+      </tr>
+    </table>
+
+    <h1>My spending record</h1>
+
+    <table>
+      <caption>How I chose to spend my money</caption>
+        <thead>
+          <th>Purchase</th>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Evaluation</th>
+          <th>Cost (€)</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Haircut</td>
+            <td>Hairdresser</td>
+            <td>12/09</td>
+            <td>Great idea</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Lasagna</td>
+            <td>Restaurant</td>
+            <td>12/09</td>
+            <td>Regrets</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td>Shoes</td>
+            <td>Shoeshop</td>
+            <td>13/09</td>
+            <td>Big regrets</td>
+            <td>65</td>
+          </tr>
+          <tr>
+            <td>Toothpaste</td>
+            <td>Supermarket</td>
+            <td>13/09</td>
+            <td>Good</td>
+            <td>5</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <td colspan="4">SUM</td>
+          <td>118</td>
+        </tfoot>
+  </table>
+
+
+  </body>
+</html>
