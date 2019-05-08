@@ -3,32 +3,14 @@
 
 from selenium import webdriver
 import time
-<<<<<<< HEAD
-
-# first demo auto search on baidu
-
-# driver = webdriver.Firefox() # Firefox()
-driver = webdriver.Chrome() # chrome()
-# driver = webdriver.Ie()
-
-driver.maximize_window()
-driver.implicitly_wait(8) # 设置隐式等待
-
-driver.get('https://www.baidu.com')
-driver.find_element_by_xpath("//*[@id='kw']").send_keys('selenium')
-driver.find_element_by_xpath("//*[@id='su']").click()
-
-time.sleep(2)
-driver.find_element_by_xpath("//div/h3/a/em[text()='Selenium']").is_displayed()
-
-driver.quit()
-=======
 import re
 from selenium.webdriver.common.keys import Keys
 
 driver = webdriver.Chrome()
 driver.get('https://www.baidu.com')
-driver.maximize_window()
+driver.maximize_window() # 最大化窗口
+driver.set_window_size(1280,800) # 设置窗口大小
+print(driver.get_window_size())
 driver.find_element_by_xpath("//a[text()='关于百度']").click()
 driver.back() # 后退
 driver.forward() # 前进
@@ -53,12 +35,17 @@ time.sleep(8)
 print(driver.capabilities['version']) # 打印版本
 print(driver.current_url) # 打印当前url
 print(driver.title) # 打印 title
+try:
+        assert u'联系百度'==driver.title
+        print('pass')
+except Exception as e:
+        print('Assertion test faild',format(e))
 driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
 time.sleep(4)
+driver.find_elements_by_xpath("//*[@type='radio']")
 driver.quit() 
 # driver.close() # quit后退出了浏览器
 
 
     
 
->>>>>>> f4f467e931a21b8bfd2e4568226a05a66ca09b0e
