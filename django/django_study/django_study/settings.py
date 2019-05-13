@@ -55,7 +55,7 @@ ROOT_URLCONF = 'django_study.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')], # 设置admin templates模板目录 1.添加目录my_site/templates,2,复制模板文件django/contrib/admin/templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
