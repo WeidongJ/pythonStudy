@@ -50,3 +50,26 @@ cia_resource on cia_resource.id = cia_resource_detail.resource_id  limit 500,20 
 --left join & right join
 select blogs.id,`name`,comments.content from blogs left join comments on blogs.id=comments.blog_id;--列出左表的所有数据，右表中没有关联的数据，自动补全null
 select blogs.id,`name`,comments.content from blogs right join comments on blogs.id=comments.blog_id;--列出右表的所有数据，左表中没有关联的数据，自动补全null
+
+--between
+SELECT * FROM `banner` where proCode BETWEEN 100001 and 200001; -- mysql 左右都是闭合的， 即查询结果包含100001和200001 
+
+--like
+SELECT * from notify_like where userId LIKE '%2019%'; -- % 匹配所有字符，[abc]匹配括号内任一单一字符
+SELECT * from notify_like where userId LIKE '%2019test_';-- _通配任一字符
+SELECT * from notify_like where userId LIKE '%2019test_'
+
+-- in
+select * from notify_like where userId in ("12k123213121","abcd");
+
+-- alias： table
+SELECT n.notifyId,nn.content FROM notify_like as n, notify_notify as nn where n.userId = "2000000020000269187" and nn.type = "personalMessage"; -- 这条语句查的结果实际是吧2条语句结果放在一起展示
+
+--alias ： column
+SELECT userId as id FROM notify_like;
+-- JOIN: 如果表中有至少一个匹配，则返回行
+-- LEFT JOIN: 即使右表中没有匹配，也从左表返回所有的行
+-- RIGHT JOIN: 即使左表中没有匹配，也从右表返回所有的行
+-- FULL JOIN: 只要其中一个表中存在匹配，就返回行
+
+
