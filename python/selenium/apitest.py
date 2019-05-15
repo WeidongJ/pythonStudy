@@ -5,12 +5,29 @@ from selenium import webdriver
 import time
 import re
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver import ActionChains
 
 driver = webdriver.Chrome()
 driver.get('https://www.baidu.com')
 driver.maximize_window() # 最大化窗口
 driver.set_window_size(1280,800) # 设置窗口大小
 print(driver.get_window_size())
+# 模拟鼠标右击+拖拽
+'''
+img = driver.find_element_by_xpath("//div[@id='lg']/img")
+actionChains = ActionChains(driver)
+actionChains.context_click(img).send_keys(Keys.ARROW_DOWN).send_keys(Keys.ENTER).perform()
+time.sleep(2)'''
+
+# 模拟回车
+element = driver.find_element_by_id('kw')
+element.send_keys('selenium 学习')
+time.sleep(2)
+element.click()
+element.send_keys(Keys.CONTROL + 'a')
+time.sleep(1)
+element.send_keys(Keys.BACKSPACE)
+driver.find_element_by_id('su').click()
 driver.find_element_by_xpath("//a[text()='关于百度']").click()
 driver.back() # 后退
 driver.forward() # 前进
@@ -40,9 +57,12 @@ try:
         print('pass')
 except Exception as e:
         print('Assertion test faild',format(e))
+driver.find_element_by_tag_name('body').click() # 模拟鼠标时先选中body
 driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
 time.sleep(4)
 driver.find_elements_by_xpath("//*[@type='radio']")
+driver.execute_script("window.alert('123');")
+time.sleep(2)
 driver.quit() 
 # driver.close() # quit后退出了浏览器
 
