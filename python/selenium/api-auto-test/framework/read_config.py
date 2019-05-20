@@ -13,7 +13,7 @@ class ConfigRead(object):
 
     def get_value(self, section, key):
         config = configparser.ConfigParser()
-        root_path = os.path.dirname(__file__).split('framework')[0]
+        root_path = os.path.split(os.path.dirname(__file__))[0]
         file_path = root_path + '/config/config.ini'
         try:
             config.read(file_path)

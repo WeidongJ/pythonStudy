@@ -1,0 +1,4 @@
+2019-05-20 22:46:53,559 - BrowserEngine - INFO - Test url is: https://www.baidu.com
+2019-05-20 22:46:53,560 - BrowserEngine - INFO - Test browser is: Chrome
+2019-05-20 22:46:55,967 - BrowserEngine - INFO - Start Chrome browser.
+2019-05-20 22:46:57,891 - baidu_unittest - INFO - search selenium
