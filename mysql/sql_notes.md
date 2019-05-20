@@ -64,3 +64,12 @@ union 和 union all的区别：**union会去重**
             ALTER TABLE `price` DROP FOREIGN KEY `f_key`;
 * DEFAULT 约束默认值。
 * CHECK 约束用于限制列中的值的范围,mysql不支持CHECK；可以使用emun或者触发器实现（使用if判断插入值，不满足的执行delete）。
+
+### 其他命令
+
+**CREATE INDEX**：
+
+**问题**
+where和group by作用优先级，where一半置于group by之前：
+
+        SELECT activity_code,count(resource_code) FROM `cia_activity_resource` where `delete` = "0" GROUP BY activity_code  ORDER BY count(resource_code) desc ;
