@@ -13,7 +13,7 @@ driver.execute_script("window.alert('1234.');")
 # --dismiss
 # driver.switch_to_alert().dismiss() # 实测switch_to.alert()会报错：TypeError: 'Alert' object is not callable
 
-driver.switch_to.alert.dismiss()
+driver.switch_to.alert.dismiss() # alert object is not callable
 iframe = driver.find_element_by_xpath("//iframe[contains(@id,'x-URS-iframe')]")
 driver.switch_to.frame(iframe)
 driver.find_element_by_xpath("//input[contains(@id,'auto-id')]").send_keys('123123')
