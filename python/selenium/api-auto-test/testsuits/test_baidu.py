@@ -22,6 +22,7 @@ class BaiduSearch(unittest.TestCase):
         self.driver.quit()
 
     def test_search(self):
+        self.bro
         self.driver.find_element_by_id('kw').send_keys('selenium')
         mylogger.info('search selenium')
         time.sleep(1)

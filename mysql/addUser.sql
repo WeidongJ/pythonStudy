@@ -3,7 +3,7 @@ insert into user (host, user, password, select_priv, insert_priv, update_priv) V
 insert into user (host, user, authentication_string, select_priv, insert_priv, update_priv) VALUES ('localhost', 'guest', PASSWORD('123456'), 'Y', 'Y', 'Y'); --mysql5.0 insert用户,PASSWORD函数用于加密
 
 create user guest identified by '123456'; grant usage on *.* to 'guest'@'%'; --mysql 8.0
-grant usage on *.* to 'guest'@'%' identified by '123456'; --mysql 5.6
+grant usage on *.* to 'guest'@'%' identified by '123456'; --mysql 5.6 usage权限只能登陆
 
 --基础命令
 use database;
