@@ -4,6 +4,7 @@
 import os
 import time
 from framework.logger import Logger
+from selenium.common.exceptions import NoSuchElementException
 
 '''base operation'''
 
@@ -36,4 +37,56 @@ class BasePage(object):
         except Exception as e:
             print('截图失败', format(e))
 
-
+    def find_element(self, **kw):
+        element = ''
+        if len(kw) != 1:
+            raise KeyError('elements is more than 1.')
+        elif 'id' in kw:
+            try:
+                element = self.driver.find_element_by_id(kw['id'])
+                mylogger.info('element find: %s' % kw['id'])
+            except NoSuchElementException as e:
+                mylogger.error('element find failed:%s' % e)
+        elif 'name' in kw:
+            try:
+                element = self.driver.find_element_by_name(kw['name'])
+                mylogger.info('element find: %s' % kw['name'])
+            except NoSuchElementException as e:
+                mylogger.error('element find failed:%s' % e)
+        elif 'class_name' in kw:
+            try:
+                element = self.driver.find_element_by_class_name(kw['class_name'])
+                mylogger.info('element find: %s' % kw['class_name'])
+            except NoSuchElementException as e:
+                mylogger.error('element find failed:%s' % e)
+        elif 'partial_link_text' in kw:
+            try:
+                element = self.driver.find_element_by_partial_link_text(kw['partial_link_text'])
+                mylogger.info('element find: %s' % kw['partial_link_text'])
+            except NoSuchElementException as e:
+                mylogger.error('element find failed:%s' % e)
+        elif 'tag_name' in kw:
+            try:
+                element = self.driver.find_element_by_tag_name(kw['tag_name'])
+                mylogger.info('element find: %s' % kw['tag_name'])
+            except NoSuchElementException as e:
+                mylogger.error('element find failed:%s' % e)
+        elif 'link_text' in kw:
+            try:
+                element = self.driver.find_element_by_link_text(kw['link_text'])
+                mylogger.info('element find: %s' % kw['link_text'])
+            except NoSuchElementException as e:
+                mylogger.error('element find failed:%s' % e)
+        elif 'xpath' in kw:
+            try:
+                element = self.driver.find_element_by_xpath(kw['xpath'])
+                mylogger.info('element find: %s' % kw['xpath'])
+            except NoSuchElementException as e:
+                mylogger.error('element find failed:%s' % e)
+        elif 'css_selector' in kw:
+            try:
+                element = self.driver.find_element_by_css_selector(kw['css_selector'])
+                mylogger.info('element find: %s' % kw['css_selector'])
+            except NoSuchElementException as e:
+                mylogger.error('element find failed:%s' % e)
+        
