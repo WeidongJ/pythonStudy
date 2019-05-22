@@ -12,6 +12,7 @@ def sendMail(filename):
     # 编辑邮件内容
     f = open(filename, 'rb')
     mail_body = f.read()
+    f.close()
     # 获取邮件收发者信息
     smtp_server = read_config('mailConfig', 'smtp_server')
     from_addr = read_config('mailConfig', 'sender')

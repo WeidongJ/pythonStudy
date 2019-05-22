@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(__file__).split('csdn')[0])
 print(sys.path)
 import time
 from selenium import webdriver
-from test1.basepage import BasePage
+from framework.basepage import BasePage
 from framework.logger import Logger
 
 mylogger = Logger(logger='TestMyLog').get_log()

@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+sys.path.append(os.path.split(os.path.dirname(__file__))[0])
+
+import time
+import unittest
+from framework.browser_engine import BrowserEngine
+from pageobjects.baidupage import BaiduPage
+from pageobjects.baidu_news_home import NewsPage
+from pageobjects.baidu_game_home import GamePage
+
+
+class BaiduSearch1(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        browser = BrowserEngine(cls)
+        cls.driver = browser.open_browser(cls)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
+
+    def test_search1(self):
+        homepage = BaiduPage(self.driver)
+        homepage.click_news()
+        newshome = NewsPage(self.driver)
+        newshome.click_sports()
+        sportshome = GamePage(self.driver)
+        sportshome.click_sports()
+        time.sleep(2)
+        homepage.take_screenshot()
+'''
+    def test_search2(self):
+        homepage = BaiduPage(self.driver)
+        homepage.type_search('python')
+        homepage.send_submit_btn()
+        time.sleep(2)
+        homepage.take_screenshot()'''
+
+if __name__ == '__main__':
+    unittest.main()

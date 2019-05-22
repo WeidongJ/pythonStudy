@@ -1,0 +1,18 @@
+2019-05-22 22:51:40,324 - BrowserEngine - INFO - Test url is: https://www.baidu.com
+2019-05-22 22:51:40,325 - BrowserEngine - INFO - Test browser is: Chrome
+2019-05-22 22:51:42,485 - BrowserEngine - INFO - Start Chrome browser.
+2019-05-22 22:51:44,172 - baidu_unittest - INFO - search selenium
+2019-05-22 22:51:47,323 - BrowserEngine - INFO - Test url is: https://www.baidu.com
+2019-05-22 22:51:47,325 - BrowserEngine - INFO - Test browser is: Chrome
+2019-05-22 22:51:49,500 - BrowserEngine - INFO - Start Chrome browser.
+2019-05-22 22:51:51,142 - BasePage - INFO - Had find the element ' 新闻 ' successful by xpath via value: //a[@name='tj_trnews'] 
+2019-05-22 22:51:52,409 - BasePage - INFO - element click success.
+2019-05-22 22:51:57,411 - BasePage - INFO - Sleep for 5 seconds.
+2019-05-22 22:51:57,471 - BasePage - INFO - Had find the element ' 体育 ' successful by xpath via value: //div[@id='channel-all']/div/ul/li[7] 
+2019-05-22 22:51:57,923 - BasePage - INFO - element click success.
+2019-05-22 22:51:59,924 - BasePage - INFO - Sleep for 2 seconds.
+2019-05-22 22:51:59,982 - BasePage - INFO - Had find the element ' 游戏 ' successful by xpath via value: //div[@id='channel-all']/div/ul/li[10] 
+2019-05-22 22:52:02,802 - BasePage - INFO - element click success.
+2019-05-22 22:52:04,803 - BasePage - INFO - Sleep for 2 seconds.
+2019-05-22 22:52:07,336 - BasePage - INFO - 开始截图并保存
+2019-05-22 22:52:10,936 - MailSend - INFO - 邮件发送成功

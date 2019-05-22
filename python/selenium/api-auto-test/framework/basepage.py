@@ -37,56 +37,84 @@ class BasePage(object):
         except Exception as e:
             print('截图失败', format(e))
 
-    def find_element(self, **kw):
+    def find_element(self, selector):
+        """
+         这个地方为什么是根据=>来切割字符串，请看页面里定位元素的方法
+         submit_btn = "id=>su"
+         login_lnk = "xpath => //*[@id='u1']/a[7]"  # 百度首页登录链接定位
+         如果采用等号，结果很多xpath表达式中包含一个=，这样会造成切割不准确，影响元素定位
+        :param selector:
+        :return: element
+        """
         element = ''
-        if len(kw) != 1:
-            raise KeyError('elements is more than 1.')
-        elif 'id' in kw:
+        if '=>' not in selector:
+            return self.driver.find_element_by_id(selector)
+        selector_by = selector.split('=>')[0]
+        selector_value = selector.split('=>')[1]
+ 
+        if selector_by == "i" or selector_by == 'id':
             try:
-                element = self.driver.find_element_by_id(kw['id'])
-                mylogger.info('element find: %s' % kw['id'])
+                element = self.driver.find_element_by_id(selector_value)
+                mylogger.info("Had find the element \' %s \' successful "
+                            "by %s via value: %s " % (element.text, selector_by, selector_value))
             except NoSuchElementException as e:
-                mylogger.error('element find failed:%s' % e)
-        elif 'name' in kw:
+                mylogger.error("NoSuchElementException: %s" % e)
+                self.take_screenshot()   # take screenshot
+        elif selector_by == "n" or selector_by == 'name':
+            element = self.driver.find_element_by_name(selector_value)
+        elif selector_by == "c" or selector_by == 'class_name':
+            element = self.driver.find_element_by_class_name(selector_value)
+        elif selector_by == "l" or selector_by == 'link_text':
+            element = self.driver.find_element_by_link_text(selector_value)
+        elif selector_by == "p" or selector_by == 'partial_link_text':
+            element = self.driver.find_element_by_partial_link_text(selector_value)
+        elif selector_by == "t" or selector_by == 'tag_name':
+            element = self.driver.find_element_by_tag_name(selector_value)
+        elif selector_by == "x" or selector_by == 'xpath':
             try:
-                element = self.driver.find_element_by_name(kw['name'])
-                mylogger.info('element find: %s' % kw['name'])
+                element = self.driver.find_element_by_xpath(selector_value)
+                mylogger.info("Had find the element \' %s \' successful "
+                                "by %s via value: %s " % (element.text, selector_by, selector_value))
             except NoSuchElementException as e:
-                mylogger.error('element find failed:%s' % e)
-        elif 'class_name' in kw:
-            try:
-                element = self.driver.find_element_by_class_name(kw['class_name'])
-                mylogger.info('element find: %s' % kw['class_name'])
-            except NoSuchElementException as e:
-                mylogger.error('element find failed:%s' % e)
-        elif 'partial_link_text' in kw:
-            try:
-                element = self.driver.find_element_by_partial_link_text(kw['partial_link_text'])
-                mylogger.info('element find: %s' % kw['partial_link_text'])
-            except NoSuchElementException as e:
-                mylogger.error('element find failed:%s' % e)
-        elif 'tag_name' in kw:
-            try:
-                element = self.driver.find_element_by_tag_name(kw['tag_name'])
-                mylogger.info('element find: %s' % kw['tag_name'])
-            except NoSuchElementException as e:
-                mylogger.error('element find failed:%s' % e)
-        elif 'link_text' in kw:
-            try:
-                element = self.driver.find_element_by_link_text(kw['link_text'])
-                mylogger.info('element find: %s' % kw['link_text'])
-            except NoSuchElementException as e:
-                mylogger.error('element find failed:%s' % e)
-        elif 'xpath' in kw:
-            try:
-                element = self.driver.find_element_by_xpath(kw['xpath'])
-                mylogger.info('element find: %s' % kw['xpath'])
-            except NoSuchElementException as e:
-                mylogger.error('element find failed:%s' % e)
-        elif 'css_selector' in kw:
-            try:
-                element = self.driver.find_element_by_css_selector(kw['css_selector'])
-                mylogger.info('element find: %s' % kw['css_selector'])
-            except NoSuchElementException as e:
-                mylogger.error('element find failed:%s' % e)
+                mylogger.error("NoSuchElementException: %s" % e)
+                self.take_screenshot()
+        elif selector_by == "s" or selector_by == 'selector_selector':
+            element = self.driver.find_element_by_css_selector(selector_value)
+        else:
+            raise NameError("Please enter a valid type of targeting elements.")
+
+        return element
+ 
+
+    def typing(self, selector, text):
+        el = self.find_element(selector)
+        el.clear()
+        try:
+            el.send_keys(text)
+            mylogger.info('输入文本：%s' % text)
+        except NameError as e:
+            mylogger.error('Failed to type in input box with :%s' % e)
+            self.take_screenshot()
+
+    def clear(self,selector):
+        el = self.find_element(selector)
+        try:
+            el.clear()
+            mylogger.info('clear text box.')
+        except NameError as e:
+            mylogger.error('Failed to clear text box with:%s' % e)
+            self.take_screenshot()
+
+    def click(self,selector):
+        el = self.find_element(selector)
+        try:
+            el.click()
+            mylogger.info('element click success.')
+        except NameError as e:
+            mylogger.error('Failed to clear text box with:%s' % e)
+            self.take_screenshot()
         
+    @staticmethod
+    def sleep(seconds):
+        time.sleep(seconds)
+        mylogger.info('Sleep for %s seconds.' %seconds)
