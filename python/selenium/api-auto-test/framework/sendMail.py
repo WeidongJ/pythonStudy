@@ -9,12 +9,13 @@ from framework.logger import Logger
 
 logger = Logger(logger='MailSend').get_log()
 
-def sendMail(filename):
+
+def send_mail(filename):
     f = open(filename, 'rb')
     mail_body = f.read()
     f.close()
     config = ConfigRead()
-    smtp_server = config.get_value('mailConfig','smtp_server')
+    smtp_server = config.get_value('mailConfig', 'smtp_server')
     sender = config.get_value('mailConfig', 'sender')
     receiver = config.get_value('mailConfig', 'receiver')
     password = config.get_value('mailConfig', 'password')
