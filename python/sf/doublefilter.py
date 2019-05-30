@@ -34,6 +34,18 @@ test_list = [1,3,6,8,9]
 print(binary_search(test_list,1))
 print(selectionSorted([5,3,6,2,10]))
 
+# 冒泡排序
+def bubble_sorted(arr):
+    for i in range(len(arr)-1):
+        for j in range(len(arr)-i-1):
+            if arr[j] > arr[j+1]:
+                temp = arr[j]
+                arr[j] = arr[j+1]
+                arr[j+1] = temp
+    return arr
+
+print(bubble_sorted([1,5,-4,-6]))
+
 # 递归函数
 
 # 列表累加
@@ -116,3 +128,95 @@ def sum1(a):
         else:
             a += 1
 sum1(3)
+
+# 狄克斯特拉算法
+
+graph_weight = {}
+# 起点的邻居
+graph_weight['start'] = {}
+graph_weight['start']['a'] = 6
+graph_weight['start']['b'] = 2
+
+# a的邻居
+graph_weight['a'] = {}
+graph_weight['a']['fin'] = 1
+
+# b 的邻居
+graph_weight['b'] = {}
+graph_weight['b']['a'] = 3
+graph_weight['b']['fin'] = 5
+
+# 终点
+graph_weight['fin'] = {}
+
+# 开销
+
+infinity = float('inf')
+costs = {}
+costs['a'] = 6
+costs['b'] = 2
+costs['fin'] = infinity
+
+# 父节点
+parents = {}
+parents['a'] = 'start'
+parents['b'] = 'start'
+parents['fin'] = None
+
+processed = []
+# 找出开销最低的节点
+
+def find_lowest_cost_node(costs):
+    lowest_cost = float('inf')
+    lowest_cost_node = None
+    for node in costs:
+        cost = costs[node]
+        if cost < lowest_cost and node not in processed:
+            lowest_cost = cost
+            lowest_cost_node = node
+    return lowest_cost_node
+
+
+node = find_lowest_cost_node(costs)
+
+while node is not None:
+    cost =  costs[node]
+    neighbors = graph_weight[node]
+    for n in neighbors.keys():
+        new_cost = cost + neighbors[n]
+        if costs[n] > new_cost:
+            costs[n] = new_cost
+            parents[n] = node
+    processed.append(node)
+    node = find_lowest_cost_node(costs)
+
+print(costs)
+
+
+# 贪婪算法
+
+states_need = set(['mt', 'wa', 'or', 'id', 'nv', 'ut', 'ca', 'az'])
+
+stations = {}
+stations['kone'] = set(['id', 'nv', 'ut'])
+stations['ktwo'] = set(['wa', 'id', 'mt'])
+stations['kthree'] = set(['or', 'nv', 'ca'])
+stations['kfour'] = set(['nv', 'ut'])
+stations['ktfive'] = set(['ca', 'az'])
+
+final_stations = set()
+
+# 实现
+while states_need:
+    best_station = None
+    states_covered = set()
+
+    for station, states_for_station in stations.items():
+        covered = states_need & states_for_station
+        if len(covered) > len(states_covered):
+            best_station = station
+            states_covered = covered
+    final_stations.add(best_station)
+    states_need -= states_covered
+
+print(final_stations)

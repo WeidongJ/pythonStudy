@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
-import sys
-sys.path.append(os.path.split(os.path.dirname(__file__))[0])
-
 import time
 import unittest
 from framework.browser_engine import BrowserEngine
@@ -32,14 +28,16 @@ class BaiduSearch1(unittest.TestCase):
         sportshome = GamePage(self.driver)
         sportshome.click_sports()
         time.sleep(2)
-        homepage.take_screenshot()
-'''
+        homepage.take_screen_shot()
+    """
     def test_search2(self):
         homepage = BaiduPage(self.driver)
         homepage.type_search('python')
         homepage.send_submit_btn()
         time.sleep(2)
-        homepage.take_screenshot()'''
+        homepage.take_screen_shot()
+        """
+
 
 if __name__ == '__main__':
     unittest.main()

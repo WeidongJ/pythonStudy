@@ -3,6 +3,7 @@
 
 from framework.basepage import BasePage
 
+
 class BaiduPage(BasePage):
 
     input_box = "id=>kw"

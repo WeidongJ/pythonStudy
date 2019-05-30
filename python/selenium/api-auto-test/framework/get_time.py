@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import time
-from logger import Logger
+from framework.logger import Logger
+
 
 class GetTime(object):
 
@@ -17,10 +18,11 @@ localtime.get_system_time()
 mylogger = Logger(logger='get_time').get_log()
 mylogger.info('test')
 
+
 def convert(n):
     num = abs(n)
     a = []
-    while num>0:
+    while num > 0:
         a.append(str(num%7))
         num = num //7
     if n > 0:
@@ -28,9 +30,11 @@ def convert(n):
     else:
         return -int(''.join(a[::-1]))
 
+
 print(convert(-17))
     
 int('021')
+
 
 class Solution:
     def reverse(self, x: int) -> int:
