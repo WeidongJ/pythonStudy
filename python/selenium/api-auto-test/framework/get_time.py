@@ -21,17 +21,30 @@ mylogger.info('test')
 
 def convert(n):
     num = abs(n)
+<<<<<<< HEAD
     a = []
     while num > 0:
         a.append(str(num%7))
+=======
+    newNum = 0
+    a = 1
+    while num>0:
+        temp = num%7
+>>>>>>> a265ba3b3187a0d0ce52576e543bb30d625f315c
         num = num //7
+        newNum += temp*a
+        a *= 10
     if n > 0:
-        return int(''.join(a[::-1]))
+        return newNum
     else:
-        return -int(''.join(a[::-1]))
+        return -newNum
 
+<<<<<<< HEAD
 
 print(convert(-17))
+=======
+print(convert(70))
+>>>>>>> a265ba3b3187a0d0ce52576e543bb30d625f315c
     
 int('021')
 
