@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from socket import *
+from socket import socket, AF_INET, SOCK_STREAM
 from time import ctime
 
 HOST = ''
@@ -18,11 +18,12 @@ while True:
     tcpCliSock, addr = tcpSerSock.accept()
     print('connection from :', addr)
 
-    while True:
-        data = tcpCliSock.recv(BUFSIZ)
-        if not data:
-            break
-        tcpCliSock.send(('[%s] %s' % (ctime(), data)).encode('utf-8'))
+    with open('apple.png', 'rb') as f:
+        data = f.read()
+    # data = tcpCliSock.recv(BUFSIZ)
+    if not data:
+        break
+    tcpCliSock.send(data)
 
     tcpCliSock.close()
 tcpSerSock.close()

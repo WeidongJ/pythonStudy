@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from socket import *
+from socket import socket, AF_INET, SOCK_STREAM
 
 HOST = 'localhost'
 PORT = 21567
@@ -15,8 +15,12 @@ while True:
     if not data:
         break
     tcpCliSock.send(('%s\r\n' % data).encode())
+    in_data = bytes()
     data = tcpCliSock.recv(BUFSIZ)
-    if not data:
-        break
-    print(data.decode('utf-8').strip()) # strip() 方法？
+    while data:
+        in_data += data
+        data = tcpCliSock.recv(BUFSIZ)
+    with open('new_apple.png', 'wb') as f:
+        f.write(in_data)
+    print('图片保存成功') # strip() 方法？
     tcpCliSock.close()
