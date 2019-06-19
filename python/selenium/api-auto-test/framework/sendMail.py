@@ -27,7 +27,7 @@ def send_mail(filename):
     message['Subject'] = Header(mail_title, 'utf-8')
     try:
         server = smtplib.SMTP(smtp_server,25)
-        server.login(sender,password)
+        server.login(sender, password)
         server.sendmail(sender, receiver, message.as_string())
         logger.info('邮件发送成功')
         server.quit()

@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import time
-from logger import Logger
+from framework.logger import Logger
+
 
 
 class GetTime(object):
@@ -22,21 +23,44 @@ mylogger.info('test')
 
 def convert(n):
     num = abs(n)
+<<<<<<< HEAD
+    a = []
+    while num > 0:
+        a.append(str(num%7))
+=======
     newNum = 0
     a = 1
+<<<<<<< HEAD
     while num > 0:
         temp = num % 7
         num = num // 7
         newNum += temp * a
+=======
+    while num>0:
+        temp = num%7
+>>>>>>> a265ba3b3187a0d0ce52576e543bb30d625f315c
+        num = num //7
+        newNum += temp*a
+>>>>>>> c2ef97a236eded824586a7c300dc1f1529defbe6
         a *= 10
     if n > 0:
         return newNum
     else:
         return -newNum
 
+<<<<<<< HEAD
 
 print(convert(70))
 
+=======
+<<<<<<< HEAD
+
+print(convert(-17))
+=======
+print(convert(70))
+>>>>>>> a265ba3b3187a0d0ce52576e543bb30d625f315c
+    
+>>>>>>> c2ef97a236eded824586a7c300dc1f1529defbe6
 int('021')
 
 

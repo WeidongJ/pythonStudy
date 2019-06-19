@@ -3,6 +3,7 @@
 
 from framework.basepage import BasePage
 
+
 class GamePage(BasePage):
     game_link = "xpath=>//div[@id='channel-all']/div/ul/li[10]"
 
