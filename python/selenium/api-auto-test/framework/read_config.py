@@ -6,6 +6,7 @@ import configparser
 
 
 class ConfigRead(object):
+	
     config = configparser.ConfigParser()
 
     def get_value(self, section, key):

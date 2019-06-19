@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from framework.logger import Logger
+from framework.browser_engine import BrowserEngine
+import unittest
+import time
 import os
 import sys
 sys.path.append(os.path.split(os.path.dirname(__file__))[0])
 
-import time
-import unittest
-from framework.browser_engine import BrowserEngine
-from framework.logger import Logger
 
 mylogger = Logger(logger='baidu_unittest').get_log()
+
 
 class BaiduSearch(unittest.TestCase):
 
@@ -30,7 +31,8 @@ class BaiduSearch(unittest.TestCase):
             assert 'selenium' in self.driver.title
             print('Test Pass.')
         except Exception as e:
-            print('Test fail.',format(e))
+            print('Test fail.', format(e))
+
 
 if __name__ == '__main__':
     unittest.main()

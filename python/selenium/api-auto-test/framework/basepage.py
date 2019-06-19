@@ -10,6 +10,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 mylogger = Logger(logger='BasePage').get_log()
 
+
 class BasePage(object):
 
     def __init__(self, driver):
@@ -28,7 +29,8 @@ class BasePage(object):
         self.driver.quit()
 
     def take_screenshot(self):
-        img_path = os.path.split(os.path.dirname(__file__))[0] + '/screenshots/'
+        img_path = os.path.split(os.path.dirname(__file__))[
+            0] + '/screenshots/'
         current_time = time.strftime('%Y%m%d%H%M', time.localtime())
         screen_name = img_path + current_time + '.png'
         try:
@@ -51,12 +53,12 @@ class BasePage(object):
             return self.driver.find_element_by_id(selector)
         selector_by = selector.split('=>')[0]
         selector_value = selector.split('=>')[1]
- 
+
         if selector_by == "i" or selector_by == 'id':
             try:
                 element = self.driver.find_element_by_id(selector_value)
                 mylogger.info("Had find the element \' %s \' successful "
-                            "by %s via value: %s " % (element.text, selector_by, selector_value))
+                              "by %s via value: %s " % (element.text, selector_by, selector_value))
             except NoSuchElementException as e:
                 mylogger.error("NoSuchElementException: %s" % e)
                 self.take_screenshot()   # take screenshot
@@ -67,14 +69,15 @@ class BasePage(object):
         elif selector_by == "l" or selector_by == 'link_text':
             element = self.driver.find_element_by_link_text(selector_value)
         elif selector_by == "p" or selector_by == 'partial_link_text':
-            element = self.driver.find_element_by_partial_link_text(selector_value)
+            element = self.driver.find_element_by_partial_link_text(
+                selector_value)
         elif selector_by == "t" or selector_by == 'tag_name':
             element = self.driver.find_element_by_tag_name(selector_value)
         elif selector_by == "x" or selector_by == 'xpath':
             try:
                 element = self.driver.find_element_by_xpath(selector_value)
                 mylogger.info("Had find the element \' %s \' successful "
-                                "by %s via value: %s " % (element.text, selector_by, selector_value))
+                              "by %s via value: %s " % (element.text, selector_by, selector_value))
             except NoSuchElementException as e:
                 mylogger.error("NoSuchElementException: %s" % e)
                 self.take_screenshot()
@@ -84,7 +87,6 @@ class BasePage(object):
             raise NameError("Please enter a valid type of targeting elements.")
 
         return element
- 
 
     def typing(self, selector, text):
         el = self.find_element(selector)
@@ -96,7 +98,7 @@ class BasePage(object):
             mylogger.error('Failed to type in input box with :%s' % e)
             self.take_screenshot()
 
-    def clear(self,selector):
+    def clear(self, selector):
         el = self.find_element(selector)
         try:
             el.clear()
@@ -105,7 +107,7 @@ class BasePage(object):
             mylogger.error('Failed to clear text box with:%s' % e)
             self.take_screenshot()
 
-    def click(self,selector):
+    def click(self, selector):
         el = self.find_element(selector)
         try:
             el.click()
@@ -113,8 +115,8 @@ class BasePage(object):
         except NameError as e:
             mylogger.error('Failed to clear text box with:%s' % e)
             self.take_screenshot()
-        
+
     @staticmethod
     def sleep(seconds):
         time.sleep(seconds)
-        mylogger.info('Sleep for %s seconds.' %seconds)
+        mylogger.info('Sleep for %s seconds.' % seconds)

@@ -33,6 +33,8 @@ class BaiduSearch1(unittest.TestCase):
         sportshome.click_sports()
         time.sleep(2)
         homepage.take_screenshot()
+
+        
 '''
     def test_search2(self):
         homepage = BaiduPage(self.driver)

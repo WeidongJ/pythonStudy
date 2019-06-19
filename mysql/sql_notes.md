@@ -1,10 +1,10 @@
 ---
 title: sql学习笔记
-date： 2019-5-13
-tag： 
+date: 2019-5-13
+tag: 
     - W3school
     - SQL
-----
+---
 # sql学习笔记
 ### UNION 并集操作
 union 查询需要结果列数量相等，结构相同（即查的表要类似）：
