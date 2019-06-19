@@ -14,7 +14,7 @@ while True:
     data = input('> ')
     if not data:
         break
-    tcpCliSock.send(('%s\r\n' % data).encode())
+    tcpCliSock.send(data.encode())
     in_data = bytes()
     data = tcpCliSock.recv(BUFSIZ)
     while data:

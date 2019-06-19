@@ -19,7 +19,7 @@ def binary_search(list, item):
 # 选择排序
 def selectionSorted(arr):
     newArr = []
-    for i in range(len(arr)):
+    for _ in range(len(arr)):
         smallest = arr[0]
         smallest_index = 0
         for j in range(1,len(arr)):
@@ -218,3 +218,12 @@ while states_need:
     states_need -= states_covered
 
 print(final_stations)
+
+# 汉诺塔移动
+def move(n, a, b, c):
+    if n == 1:
+        print(a, '-->', c)
+    else:
+        move(n-1, a, c, b)
+        move(1, a, b, c)
+        move(n-1, b, c, a)

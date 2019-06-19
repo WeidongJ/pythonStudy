@@ -18,12 +18,14 @@ while True:
     tcpCliSock, addr = tcpSerSock.accept()
     print('connection from :', addr)
 
-    with open('apple.png', 'rb') as f:
-        data = f.read()
-    # data = tcpCliSock.recv(BUFSIZ)
-    if not data:
-        break
-    tcpCliSock.send(data)
-
+    while True:
+        rev_data = tcpCliSock.recv(BUFSIZ)
+        if rev_data.decode() == '1':
+            with open('apple.png', 'rb') as f:
+                data = f.read()
+            # data = tcpCliSock.recv(BUFSIZ)
+            if not data:
+                break
+            tcpCliSock.send(data)
     tcpCliSock.close()
 tcpSerSock.close()
