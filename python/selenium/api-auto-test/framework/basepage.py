@@ -11,6 +11,7 @@ from selenium.common.exceptions import NoSuchElementException
 my_logger = Logger(logger='BasePage').get_log()
 
 
+
 class BasePage(object):
 
     def __init__(self, driver):
@@ -52,7 +53,7 @@ class BasePage(object):
             return self.driver.find_element_by_id(selector)
         selector_by = selector.split('=>')[0]
         selector_value = selector.split('=>')[1]
- 
+
         if selector_by == "i" or selector_by == 'id':
             try:
                 element = self.driver.find_element_by_id(selector_value)
@@ -68,7 +69,8 @@ class BasePage(object):
         elif selector_by == "l" or selector_by == 'link_text':
             element = self.driver.find_element_by_link_text(selector_value)
         elif selector_by == "p" or selector_by == 'partial_link_text':
-            element = self.driver.find_element_by_partial_link_text(selector_value)
+            element = self.driver.find_element_by_partial_link_text(
+                selector_value)
         elif selector_by == "t" or selector_by == 'tag_name':
             element = self.driver.find_element_by_tag_name(selector_value)
         elif selector_by == "x" or selector_by == 'xpath':

@@ -5,6 +5,7 @@ import time
 from framework.logger import Logger
 
 
+
 class GetTime(object):
     def get_system_time(self):
         print(time.time())
@@ -33,9 +34,8 @@ def convert(n):
     else:
         return -newNum
 
-
 print(convert(70))
-
+    
 int('021')
 
 
@@ -43,9 +43,9 @@ class Solution:
     def reverse(self, x: int) -> int:
         num = str(abs(x))
         if x >= 0:
-            return int(num[::-1]) * (int(num[::-1]) < 2**31)
+            return int(num[::-1]) * (int(num[::-1]) < 2 ** 31)
         else:
-            return -int(num[::-1]) * (int(num[::-1]) < 2**31)
+            return -int(num[::-1]) * (int(num[::-1]) < 2 ** 31)
 
 
 a = Solution()
