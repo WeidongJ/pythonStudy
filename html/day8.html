@@ -6,6 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css"/>
         <link href="css/styles.css" rel="stylesheet">
+        <style>
+            input:invalid {
+                order: 2px dashed red;
+            }
+
+            input:valid {
+                border: 2px solid black;
+            }
+        </style>
     </head>
     <body>
         <!--form 表单 action指向提交的url method 指定请求的方法-->
@@ -108,8 +117,34 @@
                             <label for="soup">Soup</label>
                             <input type="radio" checked name="meal" id="soup" value="soup">
                         </li>
+                        <!--滑块设置 min max step type=range-->
+                        <li>
+                            <label for="beans">value of beans</label>
+                            <input type="range" name="beans" min="0" max="500" step="10" id="beans">
+                            <span class="beancount"></span>
+                        </li>
+                        <li>
+                            <input type="datetime-local" name="datetime" id="datetime">
+                            <input type="time" name="time" id="time">
+                        </li>
+                        <!--文件选择器-->
+                        <li>
+                            <input type="file" name="file" id="file" accept="image/*" multiple>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
                     </ul>
                 </fieldset>
+            </form>
+
+            <!--表单校验 novalidate 指明表单必须校验-->
+            <hr>
+            <form novalidate>
+                <label for="choose"> Would you prefer banana or cherry?</label>
+                <input id="choose" name="i_like" required>
+                <input id="choose2" name="i_like2" required pattern="apple|banana">
+                <button>Submit</button>
             </form>
         </div>
         
@@ -118,5 +153,13 @@
                 integrity="sha256-AINUlF7RFhEIU37MsMWXfqC9AlpDnmW8xp1NUfEa8io=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js" 
                 integrity="sha256-T3+0YjpPZWQR6G5L8KOHWj/T6gGfMj1CPHDYDp0z3eE=" crossorigin="anonymous"></script>
+        <script>
+        var beans = document.querySelector('#beans');
+        var count = document.querySelector('.beancount');
+        count.textContent = beans.value;
+        beans.oninput = function(){
+            count.textContent = beans.value; 
+        }
+        </script>
     </body>
 </html>

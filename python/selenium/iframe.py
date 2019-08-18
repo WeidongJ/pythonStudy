@@ -7,6 +7,7 @@ import time
 driver = webdriver.Chrome()
 driver.get('https://www.126.com')
 time.sleep(1)
+driver.find_element_by_xpath("//a[@id='switchAccountLogin']").click()
 driver.execute_script("window.alert('1234.');")
 # switch to alert -- accept
 # driver.switch_to.alert().accept()
