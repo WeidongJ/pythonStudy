@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\APP\\Python\\Python36\\python.exe",
+    "python.pythonPath": "C:\\Software\\anaconda3\\python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.testing.unittestArgs": [
@@ -9,7 +9,7 @@
         "-p",
         "test_*.py"
     ],
-    "python.testing.pyTestEnabled": false,
+    "python.testing.pytestEnabled": false,
     "python.testing.nosetestsEnabled": false,
     "python.testing.unittestEnabled": true,
     "python.linting.pep8Enabled": false
