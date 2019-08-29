@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "d:/workspace/python/python_quick_start/practice.py", line 26, in <module>
-    minus(0)
-  File "d:/workspace/python/python_quick_start/practice.py", line 12, in minus
-    raise ZeroDivisionError("num can't be 0")
-ZeroDivisionError: num can't be 0
