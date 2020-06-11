@@ -28,15 +28,8 @@ class BaiduSearch1(unittest.TestCase):
         sportshome = GamePage(self.driver)
         sportshome.click_sports()
         time.sleep(2)
-<<<<<<< HEAD
-        homepage.take_screenshot()
-
-        
-'''
-=======
         homepage.take_screen_shot()
     """
->>>>>>> c2ef97a236eded824586a7c300dc1f1529defbe6
     def test_search2(self):
         homepage = BaiduPage(self.driver)
         homepage.type_search('python')
